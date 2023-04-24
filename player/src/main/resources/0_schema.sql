@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS player (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    money DECIMAL(6,2),
+    ip_address VARCHAR(20) NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE KEY(email)
+);

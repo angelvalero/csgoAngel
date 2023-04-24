@@ -3,4 +3,4 @@
 /workspace.xml
 
 ### VS Code ###
-.idea/
+csgo/.idea/**/*.xml

@@ -1,0 +1,16 @@
+spring:
+    datasource:
+        driverClassName: org.h2.Driver
+        url: jdbc:h2:mem:player;MODE=MySQL;
+        username: csgo
+        password:
+    jpa:
+        hibernate:
+        ddl-auto: none
+        defer-datasource-initialization: true
+    sql:
+        init:
+            mode: always
+            schema-locations: classpath:0_schema.sql
+            data-locations: classpath:1_player.sql
+
