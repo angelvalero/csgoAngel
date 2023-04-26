@@ -5,15 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a5dfb28-36e1-4867-9e7c-8da3e851bb2d" name="Changes" comment="modifying">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/player/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/player/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/player/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/player/src/main/java/com/csgo/player/controller/PlayerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/player/src/main/java/com/csgo/player/controller/PlayerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player/src/main/java/com/csgo/player/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/player/src/main/java/com/csgo/player/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player/src/main/java/com/csgo/player/repository/PlayerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/player/src/main/java/com/csgo/player/repository/PlayerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player/src/main/java/com/csgo/player/service/PlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/player/src/main/java/com/csgo/player/service/PlayerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player/src/test/java/com/csgo/player/service/PlayerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/player/src/test/java/com/csgo/player/service/PlayerServiceTest.java" afterDir="false" />
     </list>
+    <list id="01e9f8ec-5c48-4330-9732-711811f2a8d9" name="Changes by chadriax" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,19 +44,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/traingft/microservicio/csgo/player/src/main/resources"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/traingft/microservicio/csgo/player/src/main/resources&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\traingft\microservicio\csgo\player\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.PlayerApplication">
+  <component name="RunManager" selected="JUnit.PlayerServiceTest.updatePlayerById_test">
     <configuration name="PlayerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.csgo.player.PlayerApplication" />
       <module name="player" />
@@ -85,7 +87,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlayerServiceTest.getUserByEmailNotFound_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PlayerServiceTest.updatePlayerByIdNoValidId_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="player" />
       <extension name="coverage">
         <pattern>
@@ -95,13 +97,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.csgo.player.service" />
       <option name="MAIN_CLASS_NAME" value="com.csgo.player.service.PlayerServiceTest" />
-      <option name="METHOD_NAME" value="getUserByEmailNotFound_test" />
+      <option name="METHOD_NAME" value="updatePlayerByIdNoValidId_test" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlayerServiceTest.getUserByEmail_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PlayerServiceTest.updatePlayerByIdWithNullValues_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="player" />
       <extension name="coverage">
         <pattern>
@@ -111,13 +113,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.csgo.player.service" />
       <option name="MAIN_CLASS_NAME" value="com.csgo.player.service.PlayerServiceTest" />
-      <option name="METHOD_NAME" value="getUserByEmail_test" />
+      <option name="METHOD_NAME" value="updatePlayerByIdWithNullValues_test" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlayerServiceTest.getUserByIdNotFound_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PlayerServiceTest.updatePlayerById_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="player" />
       <extension name="coverage">
         <pattern>
@@ -127,7 +129,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.csgo.player.service" />
       <option name="MAIN_CLASS_NAME" value="com.csgo.player.service.PlayerServiceTest" />
-      <option name="METHOD_NAME" value="getUserByIdNotFound_test" />
+      <option name="METHOD_NAME" value="updatePlayerById_test" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -135,11 +137,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.PlayerApplication" />
-        <item itemvalue="JUnit.PlayerServiceTest.getUserByEmail_test" />
+        <item itemvalue="JUnit.PlayerServiceTest.updatePlayerById_test" />
+        <item itemvalue="JUnit.PlayerServiceTest.updatePlayerByIdNoValidId_test" />
         <item itemvalue="JUnit.PlayerServiceTest" />
-        <item itemvalue="JUnit.PlayerServiceTest.getUserByEmailNotFound_test" />
-        <item itemvalue="JUnit.PlayerServiceTest.getUserByIdNotFound_test" />
+        <item itemvalue="Application.PlayerApplication" />
+        <item itemvalue="JUnit.PlayerServiceTest.updatePlayerByIdWithNullValues_test" />
       </list>
     </recent_temporary>
   </component>
@@ -164,6 +166,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="6" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/csgo$PlayerApplication.ic" NAME="PlayerApplication Coverage Results" MODIFIED="1682318883248" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

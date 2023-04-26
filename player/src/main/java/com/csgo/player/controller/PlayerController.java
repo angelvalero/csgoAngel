@@ -4,10 +4,11 @@ import com.csgo.player.entity.PlayerEntity;
 import com.csgo.player.service.PlayerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
+import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -32,4 +33,27 @@ public class PlayerController {
     public ResponseEntity<PlayerEntity> getPlayerByEmail(@PathVariable String email){
         return new ResponseEntity<PlayerEntity>(playerService.findPlayerByEmail(email), HttpStatus.OK);
     }
+
+    @DeleteMapping("/players/{id}")
+    public ResponseEntity<Void>  deletePlayerById(@PathVariable int id){
+        playerService.deletePlayerById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/players")
+    public ResponseEntity<PlayerEntity> createPlayer(@Valid @RequestBody PlayerEntity player){
+        return new ResponseEntity<>(playerService.createPlayer(player),HttpStatus.CREATED);
+    }
+
+    @PatchMapping("/players/{id}")
+    public ResponseEntity<PlayerEntity>  updatePlayerById(@PathVariable int id, @RequestBody PlayerEntity player){
+        return new ResponseEntity<PlayerEntity>(playerService.updatePlayer(id,player),HttpStatus.CREATED);
+    }
+
+
+    @PatchMapping("/addfounds/{id}/{money}")
+    public ResponseEntity<PlayerEntity>  updateMoney(@PathVariable int id, Double money){
+        return new ResponseEntity<PlayerEntity>(playerService.addfounds(id,money),HttpStatus.CREATED);
+    }
+
 }

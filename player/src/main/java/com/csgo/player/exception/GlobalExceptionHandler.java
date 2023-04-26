@@ -25,4 +25,5 @@ import lombok.extern.slf4j.Slf4j;
 
             return new ResponseEntity<ExceptionResponse>(res, HttpStatus.NOT_FOUND);
         };
+
     }
