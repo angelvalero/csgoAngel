@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0a5dfb28-36e1-4867-9e7c-8da3e851bb2d" name="Changes" comment="modifying">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/player/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/player/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/player/src/main/java/com/csgo/player/controller/PlayerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/player/src/main/java/com/csgo/player/controller/PlayerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/player/src/main/java/com/csgo/player/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/player/src/main/java/com/csgo/player/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/player/src/main/java/com/csgo/player/repository/PlayerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/player/src/main/java/com/csgo/player/repository/PlayerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/player/src/main/java/com/csgo/player/service/PlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/player/src/main/java/com/csgo/player/service/PlayerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/player/src/test/java/com/csgo/player/service/PlayerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/player/src/test/java/com/csgo/player/service/PlayerServiceTest.java" afterDir="false" />
     </list>
     <list id="01e9f8ec-5c48-4330-9732-711811f2a8d9" name="Changes by chadriax" comment="" />
@@ -58,20 +53,7 @@
       <recent name="C:\Users\traingft\microservicio\csgo\player\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PlayerServiceTest.updatePlayerById_test">
-    <configuration name="PlayerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.csgo.player.PlayerApplication" />
-      <module name="player" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.csgo.player.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.PlayerServiceTest.addfoundsByIdNotFound_test">
     <configuration name="PlayerServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="player" />
       <extension name="coverage">
@@ -87,6 +69,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PlayerServiceTest.addfoundsByIdNotFound_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="player" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.csgo.player.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.csgo.player.service" />
+      <option name="MAIN_CLASS_NAME" value="com.csgo.player.service.PlayerServiceTest" />
+      <option name="METHOD_NAME" value="addfoundsByIdNotFound_test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlayerServiceTest.addfoundsById_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="player" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.csgo.player.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.csgo.player.service" />
+      <option name="MAIN_CLASS_NAME" value="com.csgo.player.service.PlayerServiceTest" />
+      <option name="METHOD_NAME" value="addfoundsById_test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PlayerServiceTest.updatePlayerByIdNoValidId_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="player" />
       <extension name="coverage">
@@ -98,22 +112,6 @@
       <option name="PACKAGE_NAME" value="com.csgo.player.service" />
       <option name="MAIN_CLASS_NAME" value="com.csgo.player.service.PlayerServiceTest" />
       <option name="METHOD_NAME" value="updatePlayerByIdNoValidId_test" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PlayerServiceTest.updatePlayerByIdWithNullValues_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="player" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.csgo.player.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.csgo.player.service" />
-      <option name="MAIN_CLASS_NAME" value="com.csgo.player.service.PlayerServiceTest" />
-      <option name="METHOD_NAME" value="updatePlayerByIdWithNullValues_test" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -137,11 +135,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PlayerServiceTest.addfoundsByIdNotFound_test" />
+        <item itemvalue="JUnit.PlayerServiceTest.addfoundsById_test" />
         <item itemvalue="JUnit.PlayerServiceTest.updatePlayerById_test" />
         <item itemvalue="JUnit.PlayerServiceTest.updatePlayerByIdNoValidId_test" />
         <item itemvalue="JUnit.PlayerServiceTest" />
-        <item itemvalue="Application.PlayerApplication" />
-        <item itemvalue="JUnit.PlayerServiceTest.updatePlayerByIdWithNullValues_test" />
       </list>
     </recent_temporary>
   </component>

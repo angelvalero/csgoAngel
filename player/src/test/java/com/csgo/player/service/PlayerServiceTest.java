@@ -200,6 +200,27 @@ public class PlayerServiceTest {
                 .isInstanceOf(ResponseStatusException.class).hasMessageContaining("User not found");
 
     }
+    @Test
+    void addfoundsById_test() {
+        PlayerEntity playerupdate = playerModel;
+        playerModel.setMoney(250.00);
+        when(playerRepository.findById(1)).thenReturn(Optional.of(playerModel));
+        when(playerRepository.save(playerupdate)).thenReturn(playerupdate);
+        PlayerEntity updatedPlayer = playerService.addfounds(1, 500.00);
+
+        assertThat(updatedPlayer.getMoney()).isEqualTo(750.00);
+    }
+
+    @Test
+    void addfoundsByIdNotFound_test() {
+
+        when(playerRepository.findById(anyInt())).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> playerService.addfounds(anyInt(), 250.00))
+                .isInstanceOf(ResponseStatusException.class).hasMessageContaining("User not found");
+
+    }
+
 
 
 
