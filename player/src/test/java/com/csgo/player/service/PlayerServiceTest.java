@@ -2,6 +2,8 @@ package com.csgo.player.service;
 
 
 import com.csgo.player.controller.PlayerController;
+import com.csgo.player.dto.PlayerDTO;
+import com.csgo.player.entity.InventoryEntity;
 import com.csgo.player.entity.PlayerEntity;
 import com.csgo.player.exception.DuplicateEmailException;
 import com.csgo.player.repository.PlayerRepository;
@@ -12,13 +14,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.stubbing.OngoingStubbing;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.server.ResponseStatusException;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -30,6 +36,7 @@ import static org.mockito.Mockito.*;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,18 +52,23 @@ public class PlayerServiceTest {
     @Mock
     private PlayerRepository playerRepository;
 
+    private WebClient webClient;
+
 
     private ModelMapper modelMapper;
     PlayerEntity playerModel;
+    InventoryEntity inventoryModel;
 
+    PlayerDTO playerDTO;
 
     @BeforeEach
-    public void createPlayer8() {
+    public void createPlayer() {
         playerModel = new PlayerEntity(1, "Shadow","angel@lpl.com", 46.58, "224.24.171.0");
-
+        inventoryModel = new InventoryEntity(1,1, "Rocket Pop, MP9", "Minimal Wear (MW)", false, 690.52, true);
+        playerDTO = new PlayerDTO(1,"Shadow","angel@lpl.com", 46.58,List.of(inventoryModel));
     }
 
-    @DisplayName("Return a list of players")
+    @DisplayName("GIVEN no information,WHEN the endpoint is called, THEN return a list of players")
     @Test
     void getAllPlayers_test() {
         List <PlayerEntity> expectedPlayers = new ArrayList<PlayerEntity>();
@@ -71,9 +83,7 @@ public class PlayerServiceTest {
 
 
     }
-
-
-    @DisplayName("Given an player id, then return a player, when id's player match")
+    @DisplayName("GIVEN a player id,WHEN the endpoint is called, THEN return a playerEntity with a player filter by ID")
     @Test
     void getPlayerById_test() {
 
@@ -91,7 +101,7 @@ public class PlayerServiceTest {
 
     }
 
-    @DisplayName("Given an player id, then return a not found")
+    @DisplayName("GIVEN a player id,WHEN the endpoint is called, THEN return a exception with not found")
     @Test
     void getPlayerByIdNotFound_test() {
 
@@ -106,7 +116,7 @@ public class PlayerServiceTest {
 
     }
 
-    @DisplayName("Given an player email, then return a email player, when email's player match")
+    @DisplayName("GIVEN a player email,WHEN the endpoint is called, THEN return a playerEntity with a player filter by email")
     @Test
     void getPlayerByEmail_test() {
 
@@ -123,7 +133,7 @@ public class PlayerServiceTest {
         verify(playerRepository, times(1)).findByEmail("angelvp@lpl.com");
     }
 
-    @DisplayName("Given an player email, then return a not found")
+    @DisplayName("GIVEN a player email,WHEN the endpoint is called, THEN return a exception with not found")
     @Test
     void getPlayerByEmailNotFound_test() {
 
@@ -134,20 +144,16 @@ public class PlayerServiceTest {
         assertThatThrownBy(() -> playerService.findPlayerByEmail("notfound@test"))
                 .isInstanceOf(ResponseStatusException.class)
                 .hasMessageContaining("Usuario con el email: notfound@test no encontrado");
-
-
     }
 
-
-
-    @DisplayName("Given an player id, then delete this player and return 204")
+    @DisplayName("GIVEN no information,WHEN the endpoint is called, THEN delete this player and return 204")
     @Test
     void deletePlayerbyId_test() {
         playerService.deletePlayerById(1);
         verify(playerRepository, times(1)).deleteById(1);
     }
 
-    @DisplayName("Given an player id, then delete this player and return 204")
+    @DisplayName("GIVEN a player id,WHEN the endpoint is called, THEN delete this player and return exception")
     @Test
     void deletePlayerbyIdNot_test() {
         doThrow(EmptyResultDataAccessException.class).when(playerRepository).deleteById(1234);
@@ -158,7 +164,7 @@ public class PlayerServiceTest {
                 exception.getMessage());
     }
 
-    @DisplayName("Given a Player, then create this player in database")
+    @DisplayName("GIVEN a player information,WHEN the endpoint is called, THEN create player in the database")
     @Test
     void createPlayer_test(){
         when(playerRepository.save(playerModel)).thenReturn(playerModel);
@@ -166,7 +172,7 @@ public class PlayerServiceTest {
         assertThat(playerModel).isEqualTo(createdPlayer);
     }
 
-    @DisplayName("Given a Player, then thrown an error because email is already un database")
+    @DisplayName("GIVEN a player information,WHEN the endpoint is called, THEN thrown an exception because email was already in the database")
     @Test
     void createPlayerEmailExists_test(){
         when(playerRepository.existsByEmail(playerModel.getEmail())).thenReturn(true);
@@ -174,7 +180,7 @@ public class PlayerServiceTest {
                 .hasMessageContaining("Email ya introducido en la base de datos");
     }
 
-
+    @DisplayName("GIVEN a player information,WHEN the endpoint is called, THEN update player in the database")
     @Test
     void updatePlayerById_test() {
         playerModel.setId(1);
@@ -191,6 +197,7 @@ public class PlayerServiceTest {
         assertThat(playerupdate.getName()).isEqualTo(result.getName());
     }
 
+    @DisplayName("GIVEN a player information,WHEN the endpoint is called, THEN thrown an exception")
     @Test
     void updatePlayerByIdNoValidId_test() {
 
@@ -200,6 +207,8 @@ public class PlayerServiceTest {
                 .isInstanceOf(ResponseStatusException.class).hasMessageContaining("User not found");
 
     }
+
+    @DisplayName("GIVEN a player id and the money,WHEN the endpoint is called, THEN update money")
     @Test
     void addfoundsById_test() {
         PlayerEntity playerupdate = playerModel;
@@ -211,6 +220,7 @@ public class PlayerServiceTest {
         assertThat(updatedPlayer.getMoney()).isEqualTo(750.00);
     }
 
+    @DisplayName("GIVEN a player id and the money,WHEN the endpoint is called, THEN thrown an exception")
     @Test
     void addfoundsByIdNotFound_test() {
 
@@ -220,8 +230,6 @@ public class PlayerServiceTest {
                 .isInstanceOf(ResponseStatusException.class).hasMessageContaining("User not found");
 
     }
-
-
 
 
 }

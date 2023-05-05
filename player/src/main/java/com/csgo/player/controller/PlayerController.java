@@ -1,14 +1,15 @@
 package com.csgo.player.controller;
 
+import com.csgo.player.dto.PlayerDTO;
+import com.csgo.player.entity.InventoryEntity;
 import com.csgo.player.entity.PlayerEntity;
 import com.csgo.player.service.PlayerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
-import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
-import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -23,6 +24,8 @@ public class PlayerController {
     public List <PlayerEntity> getAllPlayers(){
         return playerService.findAll();
     }
+
+
 
     @GetMapping("/players/{id}")
     public PlayerEntity getPlayerById(@PathVariable int id){
@@ -52,8 +55,13 @@ public class PlayerController {
 
 
     @PatchMapping("/addfounds/{id}/{money}")
-    public ResponseEntity<PlayerEntity>  updateMoney(@PathVariable int id, Double money){
+    public ResponseEntity<PlayerEntity>  updateMoney(@PathVariable int id, @PathVariable Double money){
         return new ResponseEntity<PlayerEntity>(playerService.addfounds(id,money),HttpStatus.CREATED);
+    }
+
+    @GetMapping("/players/{id}/inventory")
+    public Mono<PlayerDTO> getPlayerWithInventory(@PathVariable int id){
+        return playerService.findPlayerByIdWithInventory(id);
     }
 
 }

@@ -1,5 +1,9 @@
+
+
 package com.csgo.player.service;
 
+import com.csgo.player.dto.PlayerDTO;
+import com.csgo.player.entity.InventoryEntity;
 import com.csgo.player.entity.PlayerEntity;
 import com.csgo.player.exception.DuplicateEmailException;
 import com.csgo.player.repository.PlayerRepository;
@@ -8,10 +12,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import org.modelmapper.ModelMapper;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
+
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -101,4 +109,41 @@ public class PlayerService {
 
         return playerRepository.save(existingPlayer);
     }
+
+    public Mono<List<InventoryEntity>> getInventories() {
+        WebClient webClient = WebClient.create();
+
+        Mono<List<InventoryEntity>> response = webClient.get()
+                .uri("http://localhost:8081/inventories")
+                .retrieve()
+                .bodyToFlux(InventoryEntity.class)
+                .collectList();
+
+        return response;
+    }
+
+    public Mono<PlayerDTO> findPlayerByIdWithInventory(Integer id) {
+        Optional<PlayerEntity> player = playerRepository.findById(id);
+        if (player.isEmpty()) {
+            log.error("Not found a player with that ID");
+            throw new EntityNotFoundException("Usuario con el id: " + id + " no encontrado");
+        }
+        log.info("Return a Player with Inventory");
+
+        Mono<List<InventoryEntity>> inventory = getInventories()
+                .map(inventories -> inventories.stream()
+                        .filter(inv -> inv.getPlayerId().equals(id))
+                        .collect(Collectors.toList()));
+
+        return  inventory.map(inv ->{
+            PlayerDTO playerDTO = new PlayerDTO();
+            playerDTO.setId(player.get().getId());
+            playerDTO.setName(player.get().getName());
+            playerDTO.setEmail(player.get().getEmail());
+            playerDTO.setMoney(player.get().getMoney());
+            playerDTO.setInventory(inv);
+            return playerDTO;
+        });
+    }
+
 }
